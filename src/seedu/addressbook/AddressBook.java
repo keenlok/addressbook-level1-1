@@ -84,6 +84,9 @@ public class AddressBook {
     private static final String MESSAGE_WELCOME = "Welcome to your Address Book!";
     private static final String MESSAGE_USING_DEFAULT_FILE = "Using default storage file : " + DEFAULT_STORAGE_FILEPATH;
     private static final String MESSAGE_ADDRESSBOOK_SORTED = "Address book has now been sorted alphabetically!";
+    private static final String MESSAGE_ENTRY_EDITED = "Addressbook entry %1$s has been updated!";
+    private static final String MESSAGE_NEW_FIELD_ADDED = "New field %1$s has been added to the address book!"
+                                                        + LS + "Please update the other entries!";
 
     // These are the prefix strings to define the data type of a command parameter
     private static final String PERSON_DATA_PREFIX_PHONE = "p/";
@@ -101,7 +104,7 @@ public class AddressBook {
 
     private static final String COMMAND_FIND_WORD = "find";
     private static final String COMMAND_FIND_DESC = "Finds all persons whose names contain any of the specified "
-                                        + "keywords (case-sensitive) and displays them as a list with index numbers.";
+                                        + "keywords (case-insensitive) and displays them as a list with index numbers.";
     private static final String COMMAND_FIND_PARAMETERS = "KEYWORD [MORE_KEYWORDS]";
     private static final String COMMAND_FIND_EXAMPLE = COMMAND_FIND_WORD + " alice bob charlie";
 
@@ -139,13 +142,13 @@ public class AddressBook {
      * used by the internal HashMap<PersonProperty, String> storage format.
      * For example, a person's name is stored as the 0th element in the array.
      */
-    private static final int PERSON_DATA_INDEX_NAME = 0;
-    private static final int PERSON_DATA_INDEX_PHONE = 1;
-    private static final int PERSON_DATA_INDEX_EMAIL = 2;
-
-    private static final String PERSON_PROPERTY_NAME = "name";
-    private static final String PERSON_PROPERTY_PHONE = "phone";
-    private static final String PERSON_PROPERTY_EMAIL = "email";
+//    private static final int PERSON_DATA_INDEX_NAME = 0;
+//    private static final int PERSON_DATA_INDEX_PHONE = 1;
+//    private static final int PERSON_DATA_INDEX_EMAIL = 2;
+//
+//    private static final String PERSON_PROPERTY_NAME = "name";
+//    private static final String PERSON_PROPERTY_PHONE = "phone";
+//    private static final String PERSON_PROPERTY_EMAIL = "email";
 
     private enum PersonProperty {NAME, EMAIL, PHONE}
     /**
@@ -1112,6 +1115,7 @@ public class AddressBook {
         return getUsageInfoForAddCommand() + LS
                 + getUsageInfoForFindCommand() + LS
                 + getUsageInfoForViewCommand() + LS
+                + getUsageInfoForSortCommand() + LS
                 + getUsageInfoForDeleteCommand() + LS
                 + getUsageInfoForClearCommand() + LS
                 + getUsageInfoForExitCommand() + LS
@@ -1161,6 +1165,12 @@ public class AddressBook {
     private static String getUsageInfoForExitCommand() {
         return String.format(MESSAGE_COMMAND_HELP, COMMAND_EXIT_WORD, COMMAND_EXIT_DESC)
                 + String.format(MESSAGE_COMMAND_HELP_EXAMPLE, COMMAND_EXIT_EXAMPLE);
+    }
+
+    /** Returns the string for showing 'sort' command usage instrution */
+    private static  String getUsageInfoForSortCommand() {
+        return String.format(MESSAGE_COMMAND_HELP, COMMAND_SORT_WORD, COMMAND_SORT_DESC) + LS
+                + String.format(MESSAGE_COMMAND_HELP_EXAMPLE, COMMAND_SORT_EXAMPLE) + LS;
     }
 
 
