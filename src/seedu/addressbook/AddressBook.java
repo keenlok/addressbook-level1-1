@@ -484,7 +484,9 @@ public class AddressBook {
         final ArrayList<HashMap<PersonProperty, String>> matchedPersons = new ArrayList<>();
         for (HashMap<PersonProperty, String> person : getAllPersonsInAddressBook()) {
             final Set<String> wordsInName = new HashSet<>(splitByWhitespace(getNameFromPerson(person)));
-            if (!Collections.disjoint(wordsInName, keywords)) {
+            final Set<String> smallCaseWordsInName = new HashSet<>(changeToLowerCase(wordsInName));
+            final Collection<String> lowerCasedKeywords = changeToLowerCase(keywords);
+            if (!Collections.disjoint(smallCaseWordsInName, lowerCasedKeywords)) {
                 matchedPersons.add(person);
             }
         }
@@ -1166,6 +1168,12 @@ public class AddressBook {
      */
     private static ArrayList<String> splitByWhitespace(String toSplit) {
         return new ArrayList<>(Arrays.asList(toSplit.trim().split("\\s+")));
+    }
+
+    private static Collection<String> changeToLowerCase(Collection<String> toChange) {
+        Set<String> changedSet = new HashSet<>();
+        toChange.forEach(s -> changedSet.add(s.toLowerCase()));
+        return changedSet;
     }
 
 }
