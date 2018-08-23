@@ -34,11 +34,19 @@
   list
 
   # order of phone and email should not matter
-  add Charlie Dickson e/charlie.d@nus.edu.sg p/333333
-  list
   add Dickson Ee e/dickson@nus.edu.sg p/444444
   list
   add Esther Potato p/555555 e/esther@notreal.potato
+  list
+  add Charlie Dickson e/charlie.d@nus.edu.sg p/333333
+  list
+
+##########################################################
+# test sort persons command
+##########################################################
+
+  # sorts the persons based on the first letter of their name
+  sort
   list
 
 ##########################################################
